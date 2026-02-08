@@ -1,0 +1,8 @@
+C:\practice\dotNET\lab1IsHere\lab1IsHere\bin\Debug\lab1IsHere.exe.config
+C:\practice\dotNET\lab1IsHere\lab1IsHere\bin\Debug\lab1IsHere.exe
+C:\practice\dotNET\lab1IsHere\lab1IsHere\bin\Debug\lab1IsHere.pdb
+C:\practice\dotNET\lab1IsHere\lab1IsHere\obj\Debug\lab1IsHere.csproj.AssemblyReference.cache
+C:\practice\dotNET\lab1IsHere\lab1IsHere\obj\Debug\lab1IsHere.csproj.CoreCompileInputs.cache
+C:\practice\dotNET\lab1IsHere\lab1IsHere\obj\Debug\lab1IsHere.exe
+C:\practice\dotNET\lab1IsHere\lab1IsHere\obj\Debug\lab1IsHere.pdb
+C:\practice\dotNET\lab1IsHere\lab1IsHere\obj\Debug\lab1IsHere.exe.config
