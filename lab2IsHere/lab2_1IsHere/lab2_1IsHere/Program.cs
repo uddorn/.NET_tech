@@ -14,24 +14,22 @@ namespace lab2_1IsHere
                 Type t = a.GetType("ArrayHelper");
                 object o = a.CreateInstance("ArrayHelper");
 
-                int[] myArr = { 10, 20, 30, 40, 50 };
+                int[] myArr = { 5, 10, 15, 20 };
 
-                Console.WriteLine("Початковий масив:");
+                Console.WriteLine("Вивід масиву:");
                 MethodInfo printMethod = t.GetMethod("PrintArray");
-                object[] printArgs = new object[] { myArr };
-                printMethod.Invoke(o, printArgs);
+                printMethod.Invoke(o, new object[] { myArr });
 
-                Console.WriteLine("\nВидаляємо елемент за індексом 2 (значення 30)...");
-                MethodInfo removeMethod = t.GetMethod("RemoveAndReturn");
-                object[] removeArgs = new object[] { myArr, 2 };
-                object removedValue = removeMethod.Invoke(o, removeArgs);
+                string binaryString = "10100110";
 
-                myArr = (int[])removeArgs[0];
-                Console.WriteLine($"Видалений елемент: {removedValue}");
+                Console.WriteLine("\nПочатковий рядок:");
+                Console.WriteLine(binaryString);
 
-                Console.WriteLine("\nОновлений масив:");
-                printArgs[0] = myArr;
-                printMethod.Invoke(o, printArgs);
+                MethodInfo swapMethod = t.GetMethod("SwapZeroOne");
+                object result = swapMethod.Invoke(o, new object[] { binaryString });
+
+                Console.WriteLine("\nПісля заміни 0 ↔ 1:");
+                Console.WriteLine(result);
 
                 Console.ReadLine();
             }

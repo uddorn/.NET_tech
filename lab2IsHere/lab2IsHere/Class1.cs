@@ -9,26 +9,26 @@ public class ArrayHelper
             Console.WriteLine("Масив порожній.");
             return;
         }
+
+        Console.WriteLine("Елементи масиву:");
         Console.WriteLine(string.Join(", ", array));
     }
 
-    public int RemoveAndReturn(ref int[] array, int index)
+    public string SwapZeroOne(string input)
     {
-        if (array == null || index < 0 || index >= array.Length)
+        if (string.IsNullOrEmpty(input))
+            return input;
+
+        char[] chars = input.ToCharArray();
+
+        for (int i = 0; i < chars.Length; i++)
         {
-            throw new IndexOutOfRangeException("Некоректний індекс.");
+            if (chars[i] == '0')
+                chars[i] = '1';
+            else if (chars[i] == '1')
+                chars[i] = '0';
         }
 
-        int removedElement = array[index];
-        int[] newArray = new int[array.Length - 1];
-
-        for (int i = 0, j = 0; i < array.Length; i++)
-        {
-            if (i == index) continue;
-            newArray[j++] = array[i];
-        }
-
-        array = newArray;
-        return removedElement;
+        return new string(chars);
     }
 }
