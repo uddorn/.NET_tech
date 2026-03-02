@@ -29,8 +29,6 @@ namespace classOfLab3
             this.h = h;
             this.bottomCenter = bottomCenter;
             this.form = form1;
-
-            Draw(form.pen1, form.hatchBrush, form.graph);
         }
 
         public void Draw(Pen pen, Brush brush, Graphics graph)
