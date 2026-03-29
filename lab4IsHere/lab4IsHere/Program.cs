@@ -16,7 +16,7 @@ namespace lab4IsHere
                 ConsoleKeyInfo keyInfo = Console.ReadKey(true);
                 if (char.ToLower(keyInfo.KeyChar) == char.ToLower(targetChar))
                 {
-                    OnNameKeyTriggered?.Invoke();
+                    OnNameKeyTriggered();
                     break;
                 }
             }
@@ -39,7 +39,7 @@ namespace lab4IsHere
             return sum * dx;
         }
 
-        static double AnalyticalIntegralX2(double a, double b)
+        static double AnalyticalIntegral(double a, double b)
         {
             return (Math.Pow(b, 3) - Math.Pow(a, 3)) / 3.0;
         }
@@ -57,7 +57,7 @@ namespace lab4IsHere
 
             MathFunction funcX2 = x => x * x;
             double numX2 = CalculateIntegral(funcX2, a, b, n);
-            double analX2 = AnalyticalIntegralX2(a, b);
+            double analX2 = AnalyticalIntegral(a, b);
             double errorX2 = Math.Abs(analX2 - numX2);
 
             Console.WriteLine("f(x) = x^2");
