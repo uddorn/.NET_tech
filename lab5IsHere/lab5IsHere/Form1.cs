@@ -66,7 +66,7 @@ namespace lab5IsHere
             btnReflect.Click += BtnReflect_Click;
         }
 
-        private void UpdateObjectFromUI()
+        private void UpdateObject()
         {
             float a, b;
             float.TryParse(txtA.Text, out a);
@@ -74,7 +74,7 @@ namespace lab5IsHere
             myRhombus = new Rhombus(a, b);
         }
 
-        private void UpdateUIFromObject()
+        private void UpdateUI()
         {
             txtA.Text = myRhombus.A.ToString();
             txtB.Text = myRhombus.B.ToString();
@@ -82,7 +82,7 @@ namespace lab5IsHere
 
         private void BtnSaveXML_Click(object sender, EventArgs e)
         {
-            UpdateObjectFromUI();
+            UpdateObject();
 
             XmlSerializer formatter = new XmlSerializer(typeof(Rhombus));
             using (FileStream fs = new FileStream("rhombus.xml", FileMode.Create))
@@ -102,14 +102,14 @@ namespace lab5IsHere
                 {
                     myRhombus = (Rhombus)formatter.Deserialize(fs);
                 }
-                UpdateUIFromObject();
+                UpdateUI();
                 MessageBox.Show("Завантажено з XML!");
             }
         }
 
         private void BtnSaveBinary_Click(object sender, EventArgs e)
         {
-            UpdateObjectFromUI();
+            UpdateObject();
             BinaryFormatter formatter = new BinaryFormatter();
             using (FileStream fs = new FileStream("rhombus.dat", FileMode.OpenOrCreate))
             {
@@ -127,7 +127,7 @@ namespace lab5IsHere
                 {
                     myRhombus = (Rhombus)formatter.Deserialize(fs);
                 }
-                UpdateUIFromObject();
+                UpdateUI();
                 MessageBox.Show("Завантажено з Binary!");
             }
         }
@@ -163,7 +163,7 @@ namespace lab5IsHere
 
         private void BtnDraw_Click(object sender, EventArgs e)
         {
-            UpdateObjectFromUI();
+            UpdateObject();
 
             Graphics g = pictureBox1.CreateGraphics();
             myRhombus.Draw(g, pictureBox1.Width, pictureBox1.Height);
