@@ -1,0 +1,100 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Лабораторна робота №8";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-3">@(Model.IsEditing ? "Редагувати викладача" : "Додати нового викладача")</h2>
+
+    <form method="post" asp-page-handler="Save" class="card p-4 mb-5 @(Model.IsEditing ? "bg-warning bg-opacity-10" : "bg-light")">
+        <input type="hidden" name="isUpdating" value="@(Model.IsEditing ? "true" : "false")" />
+
+        <div class="row mb-3">
+            <div class="col-md-2">
+                <label>Код:</label>
+                <input type="number" name="code" class="form-control" required
+                       value="@Model.EditingTeacher?.TeacherCode"
+                       @(Model.IsEditing ? "readonly" : "") />
+            </div>
+            <div class="col-md-4">
+                <label>ПІБ:</label>
+                <input type="text" name="fullName" class="form-control" required value="@Model.EditingTeacher?.FullName" />
+            </div>
+            <div class="col-md-3">
+                <label>Посада:</label>
+                <input type="text" name="position" class="form-control" required value="@Model.EditingTeacher?.Position" />
+            </div>
+            <div class="col-md-3">
+                <label>Кафедра:</label>
+                <input type="text" name="department" class="form-control" required value="@Model.EditingTeacher?.Department" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>Вчений ступінь:</label>
+                <input type="text" name="degree" class="form-control" value="@Model.EditingTeacher?.Degree" />
+            </div>
+            <div class="col-md-6">
+                <label>Дисципліна:</label>
+                <input type="text" name="discipline" class="form-control" required value="@Model.EditingTeacher?.Discipline" />
+            </div>
+        </div>
+
+        <div>
+            <button type="submit" class="btn @(Model.IsEditing ? "btn-warning" : "btn-primary")">
+                @(Model.IsEditing ? "Оновити дані" : "Зберегти в базу")
+            </button>
+
+            @if (Model.IsEditing)
+            {
+                <a href="/" class="btn btn-secondary ms-2">Скасувати</a>
+            }
+        </div>
+    </form>
+
+    <h2 class="mb-3">Список викладачів</h2>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Код</th>
+                <th>ПІБ</th>
+                <th>Посада</th>
+                <th>Кафедра</th>
+                <th>Ступінь</th>
+                <th>Дисципліна</th>
+                <th>Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var t in Model.TeachersList)
+            {
+                <tr>
+                    <td>@t.TeacherCode</td>
+                    <td>@t.FullName</td>
+                    <td>@t.Position</td>
+                    <td>@t.Department</td>
+                    <td>@t.Degree</td>
+                    <td>@t.Discipline</td>
+                    <td>
+                        <form method="post" asp-page-handler="Edit" style="display:inline;">
+                            <input type="hidden" name="codeToEdit" value="@t.TeacherCode" />
+                            <input type="hidden" name="fullName" value="@t.FullName" />
+                            <input type="hidden" name="position" value="@t.Position" />
+                            <input type="hidden" name="department" value="@t.Department" />
+                            <input type="hidden" name="degree" value="@t.Degree" />
+                            <input type="hidden" name="discipline" value="@t.Discipline" />
+                            <button type="submit" class="btn btn-warning btn-sm">Редагувати</button>
+                        </form>
+
+                        <form method="post" asp-page-handler="Delete" style="display:inline;">
+                            <input type="hidden" name="codeToDelete" value="@t.TeacherCode" />
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Ви впевнені, що хочете видалити цього викладача?');">Видалити</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
